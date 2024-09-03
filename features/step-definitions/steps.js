@@ -23,3 +23,9 @@ When('user login using {string} as username and {string} as password', async (us
   await LoginPage.clickLoginButton();
   // Write code here that turns the phrase above into concrete actions
 })
+
+
+When('click login button', async () => {
+  await LoginPage.clickLoginButton();
+  // Write code here that turns the phrase above into concrete actions
+})

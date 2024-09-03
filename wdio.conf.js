@@ -1,3 +1,4 @@
+import {browser} from '@Wdio/globals'
 export const config = {
     //
     // ====================
@@ -224,16 +225,21 @@ export const config = {
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // beforeFeature: function (uri, feature) {
-    // },
+    beforeFeature: function (uri, feature) {
+        console.log ("ini di eksekusi sebelum menjalankan featur")
+
+    },
     /**
      *
      * Runs before a Cucumber Scenario.
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: function (world, context) {
+
+        console.log ("ini dijalankan sebelum scenario")
+
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -254,8 +260,10 @@ export const config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: function (step, scenario, result, context) {
+        console.log("ini  dijalankan setelah step")
+
+    },
     /**
      *
      * Runs after a Cucumber Scenario.
@@ -266,16 +274,23 @@ export const config = {
      * @param {number}                 result.duration  duration of scenario in milliseconds
      * @param {object}                 context          Cucumber World object
      */
-    // afterScenario: function (world, result, context) {
-    // },
+    afterScenario: async function (world, result, context) {
+        console.log ("ini dijalankan setelah scenario")
+
+        if (!result.passed) {
+                await browser.saveScreenshot('screnshot/fild_pass.png');
+            }
+
+    },
     /**
      *
      * Runs after a Cucumber Feature.
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // afterFeature: function (uri, feature) {
-    // },
+    afterFeature: function (uri, feature) {
+        console.log ("ini dijalankan setelah feature")
+    },
     
     /**
      * Runs after a WebdriverIO command gets executed
@@ -293,15 +308,15 @@ export const config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+    after: function (result, capabilities, specs) {
+    },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // afterSession: function (config, capabilities, specs) {
+    //afterSession: function (config, capabilities, specs) {
     // },
     /**
      * Gets executed after all workers got shut down and the process is about to exit. An error
@@ -324,12 +339,14 @@ export const config = {
     * Hook that gets executed before a WebdriverIO assertion happens.
     * @param {object} params information about the assertion to be executed
     */
-    // beforeAssertion: function(params) {
-    // }
+    beforeAssertion: function(params) {
+    
+    }
     /**
     * Hook that gets executed after a WebdriverIO assertion happened.
     * @param {object} params information about the assertion that was executed, including its results
     */
     // afterAssertion: function(params) {
+
     // }
 }
